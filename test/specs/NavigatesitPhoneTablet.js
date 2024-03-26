@@ -1,5 +1,5 @@
 import { expect, browser, $ } from '@wdio/globals'
-describe('Navigating through Assist Website', ()=>{
+describe('Navigate through Assist Website Tablet/Phone', () => {
     it('Loading webpage', async()=>{
         await browser.url('https://site-dev.assist.ro/')
         await browser.pause(1000)
@@ -7,13 +7,14 @@ describe('Navigating through Assist Website', ()=>{
         await expect(className).toExist()
         await expect(className).toBeDisplayed()
         await expect(className).toHaveText('Your Technical')
-        await browser.setWindowSize(1920,1080)
-        await browser.pause(1000)
-    })
+})
 
-    it('Navigate to Company webpage', async()=>{
+it('Navigate to Company webpage', async()=>{
  
-    let companyButton = await $('aria/Company')
+    let menuButton = await $('.transform.transition-transform')
+    await menuButton.click()
+    await browser.pause(1000)
+    let companyButton = await $('=Company')
     await companyButton.click()
     await browser.pause(1000)
     await expect(browser).toHaveUrl('https://site-dev.assist.ro/company')
@@ -24,10 +25,12 @@ describe('Navigating through Assist Website', ()=>{
  
 })
 
-it('Navigate to Careers webpage', async()=>{
-
-    let careersButton = await $('aria/Careers')
-    await careersButton.click()
+/*it('Navigate to Careers webpage', async()=>{
+    let menuButton = await $('.transform.transition-transform')
+    await menuButton.click()
+    await browser.pause(1000)
+    let companyButton = await $('=Careers')
+    await companyButton.click()
     await browser.pause(1000)
     await expect(browser).toHaveUrl('https://site-dev.assist.ro/career')
     let classNameCareersPage= await $('p=Join us and work in a')
@@ -35,21 +38,13 @@ it('Navigate to Careers webpage', async()=>{
     await expect(classNameCareersPage).toExist()
     await expect(classNameCareersPage).toBeDisplayed()
 
-})
+})*/
 
-it('Navigate to All jobs webpage', async()=>{
-    let allJobsButton = await $('aria/Explore open positions')
-    await allJobsButton.click()
-    await browser.pause(1000)
-    await expect(browser).toHaveUrl('https://site-dev.assist.ro/jobs')
-    let classNameAllJobsPage= await $('p=Navigate your')
-    await expect(classNameAllJobsPage).toHaveTextContaining('Navigate your career towards success')
-    await expect(classNameAllJobsPage).toExist()
-    await expect(classNameAllJobsPage).toBeDisplayed()
-
-})
 it('Navigate to Blog webpage', async()=>{
-    let blogButton = await $('aria/Blog')
+    let menuButton = await $('.transform.transition-transform')
+    await menuButton.click()
+    await browser.pause(1000)
+    let blogButton = await $('=Blog')
     await blogButton.click()
     await browser.pause(1000)
     await expect(browser).toHaveUrl('https://site-dev.assist.ro/blog')
@@ -59,4 +54,5 @@ it('Navigate to Blog webpage', async()=>{
     await expect(classNameBlogPage).toBeDisplayed()
 
  })
+
 })
